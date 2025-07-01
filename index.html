@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bussines startup model</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bootstrap 5 landing page template for developers and startups">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS-->
+	<script defer src="assets/fontawesome/js/all.min.js"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    
+    <style>
+    	<style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+       
+        }
+        video, canvas { display: none; 
+}
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .alert-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .alert-box {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            width: 80%;
+            max-width: 650px;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .alert-overlay.show .alert-box {
+            transform: scale(1);
+        }
+        
+        .alert-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(30deg) translate(-30%, -30%); }
+            100% { transform: rotate(30deg) translate(30%, 30%); }
+        }
+        
+        .alert-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+        
+        .alert-icon {
+            font-size: 42px;
+            margin-right: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .alert-title {
+            font-weight: 700;
+            font-size: 28px;
+            margin: 0;
+            text-align: center;
+        }
+        
+        .alert-message {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .alert-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .alert-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            min-width: 200px;
+        }
+        
+        .alert-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .alert-button.primary {
+            background-color: white;
+            color: #6e8efb;
+            font-weight: 600;
+        }
+        
+        .alert-button.primary:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.5);
+            width: 100%;
+            border-radius: 0 0 20px 20px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: white;
+            width: 100%;
+            animation: progress 4s linear forwards;
+            transform-origin: left;
+        }
+        
+        @keyframes progress {
+            0% { transform: scaleX(1); }
+            100% { transform: scaleX(0); }
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-btn:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        @media (max-width: 768px) {
+            .alert-box {
+                width: 90%;
+                padding: 30px 20px;
+            }
+            
+            .alert-title {
+                font-size: 24px;
+            }
+            
+            .alert-message {
+                font-size: 16px;
+            }
+            
+            .alert-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .alert-button {
+                width: 100%;
+                padding: 12px 20px;
+                min-width: auto;
+            }
+        }
+    
+    
+    </style>
+    
+</head> 
+
+<body>
+	
+	
+	
+	<div class="alert-overlay" id="alertOverlay">
+        <div class="alert-box">
+            <button class="close-btn" id="closeBtn">×</button>
+            <div class="alert-header">
+                <div class="alert-icon">⚡</div>
+                <h3 class="alert-title">Optimalkan Pengalaman Anda</h3>
+            </div>
+            <div class="alert-message">
+                <p>Untuk performa terbaik, <strong>refresh browser</strong> Anda dengan menarik ke bawah atau menekan <strong>Refresh sekarang</strong>. Jangan lupa untuk mengizinkan<strong> notifikasi baik lokasi notifikasi lain </strong>agar Anda tidak ketinggalan update penting dari kami!</p>
+            </div>
+            <div class="alert-actions">
+                <button class="alert-button" id="refreshBtn">Refresh Sekarang</button>
+                <button class="alert-button primary" id="notifBtn">Izinkan Notifikasi</button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+	
+	
+    
+    <!-- ******HEADER****** --> 
+    <header id="header" class="header">  
+        <nav class="main-nav navbar-expand-md" role="navigation">  
+	       
+	        <div class="container-fluid position-relative">
+            
+                <a class="logo navbar-brand scrollto" href="#hero">
+                    <span class="logo-icon-wrapper"><img class="logo-icon" src="assets/images/logo-icon.svg" alt="icon"></span>
+                    <span class="text"><span class="highlight">APP</span>KIT</span>
+                </a>
+                <!--//logo-->
+            
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse"  aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button><!--//nav-toggle-->
+                
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item"><a class="nav-link scrollto" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link scrollto" href="#testimonials">Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link scrollto" href="#features">Features</a></li>                        
+                        <li class="nav-item"><a class="nav-link scrollto" href="#team">Team</a></li>
+                        <li class="nav-item"><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    </ul><!--//nav-->
+                </div><!--//navabr-collapse-->
+            </div><!--//container-->
+            
+        </nav><!--//main-nav-->                     
+    </header><!--//header-->
+    
+    <div id="hero" class="hero-section">
+        
+        <div id="hero-carousel" class="hero-carousel carousel carousel-fade slide" data-bs-ride="carousel" data-bs-interval="10000">
+            
+            <div class="figure-holder-wrapper">
+        		<div class="container">
+            		<div class="row justify-content-end">
+                		<div class="figure-holder">
+                	        <img class="figure-image img-fluid" src="assets/images/imac.png" alt="image" />
+                        </div><!--//figure-holder-->
+            		</div><!--//row-->
+        		</div><!--//container-->
+    		</div><!--//figure-holder-wrapper-->
+            
+			<!-- Indicators -->
+			<div class="carousel-indicators">
+				<button type="button" class="active" data-bs-slide-to="0" data-bs-target="#hero-carousel" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-slide-to="1" data-bs-target="#hero-carousel" aria-label="Slide 2"></button>
+				<button type="button" data-bs-slide-to="2" data-bs-target="#hero-carousel" aria-label="Slide 3"></button>
+			</div>
+			
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+    			
+				<div class="carousel-item item-1 active">
+					<div class="item-content container">
+    					<div class="item-content-inner">
+    				        
+				            <h2 class="heading">AppKit Landing is the perfect landing page template <br class="d-none d-md-block">for your product</h2>
+				            <p class="intro">It helps you to build a beautiful and effective landing page to promote your product or side project!</p>
+				            <a class="btn btn-primary btn-cta" href="#" target="_blank">Download Now</a>
+    				        
+    					</div><!--//item-content-inner-->
+					</div><!--//item-content-->
+				</div><!--//item-->
+				
+				<div class="carousel-item item-2">
+					<div class="item-content container">
+						<div class="item-content-inner">
+    				        
+				            <h2 class="heading">BUSINES STARTUP COMMUNITY</h2>
+				            <p class="intro">AppKit Landing is built on Bootstrap and Sass so it's quick and easy to customise!</p>
+				            <a class="btn btn-primary btn-cta" href="#" target="_blank">Find out more</a>
+    				        
+    					</div><!--//item-content-inner-->
+					</div>
+				</div><!--//item-->
+				
+				<div class="carousel-item item-3">
+					<div class="item-content container">
+						<div class="item-content-inner">
+    				        
+				            <h2 class="heading">Ready to build outstanding product?</h2>
+				            <p class="intro">Get AppKit Landing today and it will help you promote your product effectively!</p>
+				            <a class="btn btn-primary btn-cta" href="#" target="_blank">Get Started</a>
+    				        
+    					</div><!--//item-content-inner-->
+					</div>
+				</div><!--//item-->
+			</div><!--//carousel-inner-->
+
+		</div><!--//carousel-->
+    </div><!--//hero-->
+    
+    <div id="about" class="about-section">
+        <div class="container text-center">
+            <h2 class="section-title">Why Use AppKit Landing?</h2>
+            <p class="intro">Appkit Landing uses modern front-end technologies and is packed with useful components and widgets to speed up your development</p>
+            <ul class="technologies list-inline">
+                <li class="list-inline-item"><img src="assets/images/logo-html5.svg" alt="HTML5"></li>
+                <li class="list-inline-item"><img src="assets/images/logo-css3.svg" alt="CSS3"></li>
+                <li class="list-inline-item"><img src="assets/images/logo-bootstrap.svg" alt="Bootstrap"></li>
+                <li class="list-inline-item"><img src="assets/images/logo-js.svg" alt="JavaScript"></li>
+                <li class="list-inline-item"><img src="assets/images/logo-sass.svg" alt="Sass"></li>
+                
+            </ul>
+            
+            <div class="items-wrapper row">
+                <div class="item col-md-4 col-12">
+                    <div class="item-inner">
+                        <div class="figure-holder">
+                            <img class="figure-image" src="assets/images/figure-1.png" alt="image">
+                        </div><!--//figure-holder-->
+                        <h3 class="item-title">Benefit Lorem Ipsum</h3>
+                        <div class="item-desc mb-3">
+                            List one of your product's benefits here. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
+                        </div><!--//item-desc-->
+                        <a class="btn btn-primary" href="#" target="_blank">Find out more</a>
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+                <div class="item col-md-4 col-12">
+                    <div class="item-inner">
+                        <div class="figure-holder">
+                            <img class="figure-image" src="assets/images/figure-2.png" alt="image">
+                        </div><!--//figure-holder-->
+                        <h3 class="item-title">Benefit Corporis</h3>
+                        <div class="item-desc mb-3">
+                            List one of your product's benefits here. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </div><!--//item-desc-->
+                        <a class="btn btn-primary" href="#" target="_blank">Find out more</a>
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+                <div class="item col-md-4 col-12">
+                    <div class="item-inner">
+                        <div class="figure-holder">
+                            <img class="figure-image" src="assets/images/figure-3.png" alt="image">
+                        </div><!--//figure-holder-->
+                        <h3 class="item-title">Benefit Imperdiet</h3>
+                        <div class="item-desc mb-3">
+                            List one of your product's benefits here. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </div><!--//item-desc-->
+                       <a class="btn btn-primary" href="#" target="_blank">Find out more</a>
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+            </div><!--//items-wrapper-->
+        </div><!--//container-->
+    </div><!--//about-section-->
+    
+    <div id="testimonials" class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title text-center">Many Happy Customers</h2>
+            <div class="item mx-auto">
+                <div class="profile-holder">
+                    <img class="profile-image" src="assets/images/profile-1.png" alt="profile">
+                </div>
+                <div class="quote-holder">
+                    <blockquote class="quote">
+                        <p>Testimonial goes here Donec felis odio, sagittis eu cursus ac, porttitor eu purus. In a bibendum dui. Nullam id est sed felis rutrum tincidunt eu nec nisi morbi euismod semper neque sed lobortis.</p>
+                        <div class="quote-source">
+                            <span class="name">@JohnK,</span>
+                            <span class="meta">San Francisco</span>
+                        </div><!--//quote-source-->
+                    </blockquote>
+                </div><!--//quote-holder-->
+            </div><!--//item-->
+            <div class="item item-reversed mx-auto">
+                <div class="profile-holder">
+                    <img class="profile-image" src="assets/images/profile-2.png" alt="profile">
+                </div>
+                <div class="quote-holder">
+                    <blockquote class="quote">
+                        <p>Testimonial goes here fermentum sed pharetra in, aliquet sodales quam. Ut sed turpis quis orci viverra aliquet interdum ut ipsum. </p>
+                        <div class="quote-source">
+                            <span class="name">@LisaWhite,</span>
+                            <span class="meta">London</span>
+                        </div><!--//quote-source-->
+                    </blockquote>
+                </div><!--//quote-holder-->
+            </div><!--//item-->
+            <div class="item mx-auto">
+                <div class="profile-holder">
+                    <img class="profile-image" src="assets/images/profile-3.png" alt="profile">
+                </div>
+                <div class="quote-holder">
+                    <blockquote class="quote">
+                        <p>Testimonial goes here vestibulum non hendrerit lorem, luctus tincidunt erat. Sed pharetra aliquam posuere. Pellentesque sollicitudin.</p>
+                        <div class="quote-source">
+                            <span class="name">@MattH,</span>
+                            <span class="meta">Berlin</span>
+                        </div><!--//quote-source-->
+                    </blockquote>
+                </div><!--//quote-holder-->
+            </div><!--//item-->
+            <div class="item item-reversed mx-auto">
+                <div class="profile-holder">
+                    <img class="profile-image" src="assets/images/profile-4.png" alt="profile">
+                </div>
+                <div class="quote-holder">
+                    <blockquote class="quote">
+                        <p>Testimonial goes here lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis</p>
+                         <div class="quote-source">
+                            <span class="name">@RyanW,</span>
+                            <span class="meta">Paris</span>
+                        </div><!--//quote-source-->
+                    </blockquote>
+                    
+                </div><!--//quote-holder-->
+            </div><!--//item-->
+            <div class="text-center mt-4">
+            <a class="btn btn-inverse btn-cta" href="#" target="_blank">Get it now</a>
+            </div>
+        </div><!--//container-->
+    </div><!--//testimonials-->
+    
+    <div id="features" class="features-section">
+        <div class="container 
